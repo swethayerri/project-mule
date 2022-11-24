@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="error_continueFlow" doc:id="852e2fc2-2860-45e1-8998-6c490e2a9daf" >
+		<http:listener doc:name="Listener" doc:id="926fe8e9-4869-462a-b72e-58375ece4878" config-ref="HTTP_Listener_config" path="continue"/>
+		<logger level="INFO" doc:name="Logger" doc:id="5eb59910-81c1-430a-8a4d-df473bb5a49c" message="start"/>
+		<try doc:name="Try" doc:id="c59a2055-794c-4ab3-b82f-db19a4084b20" >
+			<db:insert doc:name="Insert" doc:id="688a9a9d-a7ab-4602-99d8-c0bef6e553c5" config-ref="Database_Config">
+			<db:sql><![CDATA[insert into]]></db:sql>
+		</db:insert>
+			<error-handler >
+				<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="d5ca8719-aa7d-487f-8676-b08beff2edbe" type="ANY">
+					<ee:transform doc:name="Transform Message" doc:id="c60f6c61-463b-4f9b-ac56-cedf6eb7c01c" >
+						<ee:message >
+							<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+	"message": "please check ur network connection"
+}]]></ee:set-payload>
+						</ee:message>
+					</ee:transform>
+				</on-error-continue>
+			</error-handler>
+		</try>
+		<logger level="INFO" doc:name="Logger" doc:id="58af221d-c997-4b80-906c-c15dc983e3a5" message="middle"/>
+		<logger level="INFO" doc:name="Logger" doc:id="84b16d84-df8b-41e2-ac25-405fabccfa8e" message="end"/>
+	</flow>
+</mule>

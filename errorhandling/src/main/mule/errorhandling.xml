@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="fcc2966c-4eba-4301-893b-dbbb71674837" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="daf431a2-b7ea-43d3-ac70-37e41d43950b" >
+		<db:my-sql-connection host="localhost" port="3306" user="root" password="Swetha@1994" database="db21" />
+	</db:config>
+	<flow name="errorhandlingFlow" doc:id="a6a66507-5ee6-4af6-b167-2a175c7a82ac" >
+		<http:listener doc:name="Listener" doc:id="2c74eeb4-57b0-41af-981e-d510b3fcc75a" config-ref="HTTP_Listener_config" path="error"/>
+		<logger level="INFO" doc:name="Logger" doc:id="2d60ef36-4714-4284-8c58-eb3601851978" message="start"/>
+		<try doc:name="Try" doc:id="9b1bca59-0adf-42d5-a4a9-4a2ce182a04b" >
+			<db:insert doc:name="Insert" doc:id="0878d79d-b9be-4ad5-8d8a-32cb067f1385" config-ref="Database_Config">
+			<db:sql><![CDATA[insert into]]></db:sql>
+		</db:insert>
+			<error-handler >
+				<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="95760359-3795-4f80-9d5c-1491d58f8808" type="ANY">
+					<ee:transform doc:name="Transform Message" doc:id="c474fac6-47af-4e30-8ddf-ed45ab982db7" >
+						<ee:message >
+							<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+	"message":"please check ur network connection" 
+}]]></ee:set-payload>
+						</ee:message>
+					</ee:transform>
+				</on-error-propagate>
+			</error-handler>
+		</try>
+		<logger level="INFO" doc:name="Logger" doc:id="66813b8b-defa-4f56-84d6-b5b171d4196c" message="middle"/>
+		<logger level="INFO" doc:name="Logger" doc:id="c72fd1a0-7807-4e5d-8f64-6bf8cc989de8" message="end"/>
+	</flow>
+</mule>
