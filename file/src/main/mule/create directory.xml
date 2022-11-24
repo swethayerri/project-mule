@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="create_directoryFlow" doc:id="8b775f3f-7e8c-4a47-bec9-f683620b2e03" >
+		<http:listener doc:name="Listener" doc:id="64b652a8-ac82-40ff-bd0e-97ebe05b5a26" config-ref="HTTP_Listener_config" path="create"/>
+		<file:create-directory doc:name="Create directory" doc:id="1d5d3c12-3a21-4419-893c-80928ee4250c" config-ref="File_Config" directoryPath="C:\Users\sweth\OneDrive\Desktop\t\z"/>
+	</flow>
+</mule>

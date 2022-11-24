@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="moveFlow" doc:id="de65db46-1aca-4bd6-a61c-01acb1b6ff87" >
+		<http:listener doc:name="Listener" doc:id="701e1b06-33aa-4937-bebc-ec72abe494b0" config-ref="HTTP_Listener_config" path="move"/>
+		<file:move doc:name="Move" doc:id="fed9103b-59d4-4e20-a6c2-89f378f09cda" config-ref="File_Config" sourcePath="C:\Users\sweth\OneDrive\Desktop\s" targetPath="C:\Users\sweth\OneDrive\Desktop\t" renameTo="p"/>
+	</flow>
+</mule>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+	<flow name="writeFlow" doc:id="396c6511-2990-4fe6-92d5-220a07140e5b" >
+		<http:listener doc:name="Listener" doc:id="9476a194-85eb-4976-9603-dc13b0f58c15" config-ref="HTTP_Listener_config" path="write"/>
+		<file:write doc:name="Write" doc:id="374acb89-94b6-48f4-9d59-1678b3f588e8" config-ref="File_Config" path="C:\Users\sweth\OneDrive\Desktop\text.json1.txt">
+			<file:content ><![CDATA[hi
+swetha]]></file:content>
+		</file:write>
+	</flow>
+</mule>

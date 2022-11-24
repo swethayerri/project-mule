@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+	<flow name="on_new_Flow" doc:id="d956fdf2-24b3-4529-b8ff-24bfb718d721" >
+		<file:listener doc:name="On New or Updated File" doc:id="db5d2eec-75e4-4c66-b69f-b269f8265699" config-ref="File_Config" directory="C:\Users\sweth\OneDrive\Desktop\t" moveToDirectory="C:\Users\sweth\OneDrive\Desktop\abc">
+			<scheduling-strategy >
+				<fixed-frequency frequency="1" timeUnit="MINUTES" />
+			</scheduling-strategy>
+		</file:listener>
+		<logger level="INFO" doc:name="Logger" doc:id="5ff371f5-d51b-40ae-b150-d5a769714e8a" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="67608456-1b21-4fab-949e-7a11c34db6cf" />
+	</flow>
+</mule>

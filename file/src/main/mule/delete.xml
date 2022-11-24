@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="deleteFlow" doc:id="b7b230c1-1bca-4317-a961-8059a289b7fc" >
+		<http:listener doc:name="Listener" doc:id="535f2765-80de-4a3a-8650-6f6e7acf7dd0" config-ref="HTTP_Listener_config" path="delete"/>
+		<file:delete doc:name="Delete" doc:id="044a0877-6f77-4d75-8e7e-aec9b1861efa" config-ref="File_Config" path="C:\Users\sweth\OneDrive\Desktop\x"/>
+	</flow>
+</mule>
