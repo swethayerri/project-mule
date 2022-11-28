@@ -10,5 +10,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	<flow name="smtpFlow" doc:id="05176280-0a7d-4f5e-a9ff-37678cb0003a" >
 		<http:listener doc:name="Listener" doc:id="39d29dc8-226f-45b4-8ffb-2508d0205aba" config-ref="HTTP_Listener_config" path="parse"/>
 		<parse-template doc:name="Parse Template" doc:id="862b1b67-ebd7-4b1d-b16d-1758900d8792" location="C:\Users\sweth\OneDrive\Desktop\y.txt"/>
+		<logger level="INFO" doc:name="Logger" doc:id="4466b74d-4a92-4660-905c-6d6c1fa2a8ed" message="hi"/>
 	</flow>
 </mule>
