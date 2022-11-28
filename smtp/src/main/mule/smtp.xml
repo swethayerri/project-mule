@@ -12,4 +12,8 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		<parse-template doc:name="Parse Template" doc:id="862b1b67-ebd7-4b1d-b16d-1758900d8792" location="C:\Users\sweth\OneDrive\Desktop\y.txt"/>
 		<logger level="INFO" doc:name="Logger" doc:id="4466b74d-4a92-4660-905c-6d6c1fa2a8ed" message="hi"/>
 	</flow>
+	<flow name="smtpFlow1" doc:id="a1a55426-26a3-432b-9795-617de1de9e68" >
+		<http:listener doc:name="Listener" doc:id="8f390821-67d7-4150-a3e1-292e1315fe4f" config-ref="HTTP_Listener_config" path="hi"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f7cb3685-5e8b-4171-b4e6-a42113511cc9" message="hello"/>
+	</flow>
 </mule>
